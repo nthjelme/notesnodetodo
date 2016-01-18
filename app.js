@@ -26,7 +26,7 @@ app.get('/api/v1/todos', function(req, res) {
 });
 
 app.post('/api/v1/todos', function(req,res) {
-  var data = {todoText: req.body.text, complete: false};
+  var data = {todoText: req.body.todoText, complete: false};
   pool.open(cn, function (err,db) {
     if (err) {
       return console.log(err);
