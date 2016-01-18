@@ -27,7 +27,6 @@ app.get('/api/v1/todos', function(req, res) {
 
 app.post('/api/v1/todos', function(req,res) {
   var data = {todoText: req.body.text, complete: false};
-  console.log("data.todoText:"+ data.todoText)
   pool.open(cn, function (err,db) {
     if (err) {
       return console.log(err);
@@ -59,7 +58,7 @@ app.put('/api/v1/todos/:todo_id', function(req, res) {
         return console.log(err);
       }
 
-      db.query("UPDATE Todo SET todoText='"+data.todoText+"',todoComplete='"+data.todoComplete+ "' WHERE todoId='"+id+"';", function (err, rows, moreResultSets) {
+      db.query("UPDATE Todo SET todoText='"+data.todoText+"',todoComplete='"+data.todoComplete+ "' WHERE NoteUNID='"+id+"';", function (err, rows, moreResultSets) {
         if (err) {
           return console.log(err);
         }
@@ -81,7 +80,7 @@ app.delete('/api/v1/todos/:todo_id', function(req, res) {
     if (err) {
       return console.log(err);
     }
-    db.query("DELETE FROM Todos WHERE unid = '"+id+"'", function (err, rows, moreResultSets) {
+    db.query("DELETE FROM Todo WHERE NoteUNID = '"+id+"'", function (err, rows, moreResultSets) {
       if (err) {
           return console.log(err);
       }
